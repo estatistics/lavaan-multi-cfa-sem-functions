@@ -22,27 +22,46 @@ Detects in a list of dataframes "show-stoppers":
 - missing values (NA/NaN),
 - infinite values
 - unexpected negative numbers
+- eg. `check_df_list(df_list_of_dt)`
 
 --------
 
 ### fit_measures()
 - It is extracting fit indices (χ2/df ratio, CFI, TLI, RMSEA, SRMR, etc.) from lavaan CFAs/SEMs and presenting them in a clean, vertical dataframe format, rounded in 3 decimals.
 - Crucially, the function includes a use_scaled toggle to automatically switch between standard Maximum Likelihood (ML) indices and Robust (Scaled) indices, which are required when data is non-normal.
+- It is mostly a helper function for other multi CFA/SEM data functions but it can be used independently too for single datasets 
+- Simple use eg. `fit_measures(cfa_fit)`
 
 --------
 
 ### outlier_remove_cfa()
 This function automates multivariate outliers detection using Mahalanobis Distance, identifying cases that exhibit unusual patterns across multiple variables simultaneously. It features a flexible "sensitivity" and "cut-off" system to pinpoint extreme cases and provides a Chi-square Q-Q plot to visualize data normality.
 - It handles missing values
-- ID exclusion
+- IDs exclusion provided
 - Returning a cleaned dataset ready for robust structural equation modeling
 - Reports exactly the rows that outliers exists
-  
+- It is mostly a helper function for run_qqplots_cfa() but it can used independently too for single datasets
+- Simple use eg.
+ ```
+  outliers_res <- outlier_remove_cfa(data_dt$Time1, sensitivity = 1, 
+                   cut_off =1, plotit = TRUE, id_name_var="id",
+                   exld  = c("idt1"))
+  ```
 --------
  
 ### run_qqplots_cfa()
-It generates ggplot2 Chi-square Q-Q plots for a list of dataframes by using the previous function outlier_remove_cfa() that it is based on Mahalanobis Distance. It can help identifies extreme cases across all datasets simultaneously. The function automatically arranges these multi plots into an organized grid. Ideal for initial data screening when you examine multiple datasets.
-
+- It generates ggplot2 Chi-square Q-Q plots for a list of dataframes by using the previous function outlier_remove_cfa()
+- it is based on Mahalanobis Distance.
+- It can help identifies extreme cases across all datasets simultaneously. T
+- Automatically arranges these multi plots into an organized grid.
+- Ideal for initial data screening when you examine multiple datasets.
+- IDs exclusion provided
+- Sensitivity and cut_off options can be used to exclude outliers
+```
+run_qqplots_cfa(mutlidataframes, sensitivity = 1, 
+                cut_off = 1, plotit = FALSE, ncol_grid = 2, 
+                exld  = c("idt1", "idt2"))
+```
 --------
 
 ### split_dt_subscales()
@@ -131,5 +150,6 @@ By Providing a list of lavaan CFA/SEM results:
 - Aggregate the results of multi-model analyses (fit indices) into a single comparison matrix. 
 - Make a ncie table of Fit measures across many lavaan analyses eg. Time 1, Time 2, Time 3, all binded in a sngle table.
 - Quick comparison & easy to assess fit indices across multiple lavaan CFA/SEM results.
+- eg. ` fit_indx_bind(cfa_t1$fit_indices)` 
 
 
