@@ -82,6 +82,17 @@ mvn_all() provides a batch-processing solution for testing these assumptions acr
 - It returns Mediation/SEM lavaan fits, lavaan r2_values, lavaan standardized tables, lavaan fit_indices (eg. CFI, TLI etc.), mi_indices (top 5). 
 
 --------
+### mediation_multi_WLSMV()
+This function can produce lavaan WLSMV stats from multiple datasets and tidy them in summary tables. 
+- It is specifically engineered when you like to use WLSMV estimator
+- lavaan WLSMV estimator produces somewhat different lavaan statistics than ML or MLR. 
+- Automates the calculation of Composite Reliability (Omega)
+- Automates the calculation of Average Variance Extracted (AVE) for latent constructs.
+- Dual-plotting engine (cause WLSMV created problems with semPATHS)
+- Saves these high-resolution diagrams from both tidySEM and lavaanPlot into a dedicated directory (cause tidySEM utilizes View tab in Rstudio, and not Display tab).
+
+
+
 
 
 
