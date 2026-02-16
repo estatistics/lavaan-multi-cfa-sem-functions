@@ -53,7 +53,7 @@ Yo ucan provide prefixes, and it splits your dataset (main scale) into subscales
 
 --------
 
-reliability_table()
+### reliability_table()
 Providing a list of dataframes, and splitted dataframes, it produce automatically all reliabilities per scale, per subscale in a neat table.Based on the psych::alpha function, it produces a summary table containing Cronbach's Alpha, Guttman's Lambda 6, and average inter-item correlations.
 - A unique feature. It flags "negative items"—variables that correlate negatively with the scale total. This allows researchers to quickly identify items that require reverse-coding or exclusion before proceeding to CFA/SEM.
 
