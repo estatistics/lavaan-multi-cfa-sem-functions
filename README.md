@@ -46,7 +46,7 @@ It generates ggplot2 Chi-square Q-Q plots for a list of dataframes by using the 
 --------
 
 ### split_dt_subscales()
-Yo ucan provide prefixes, and it splits your dataset (main scale) into subscales' datasets. Each dataset one subscale for easier manipulation, easier producing reliabilities etc. 
+You can provide prefixes, and it splits your dataset (main scale) into subscales' datasets. Each dataset one subscale for easier manipulation, easier producing reliabilities etc. 
 - It automates the creation of scale-specific datasets by identifying column name prefixes (e.g., "DEPR", "ANX"). 
 - It supports complex grouping logic, allowing you to combine multiple prefixes into a single sub-dataset using the + operator (e.g., "DEPR + ANX").
 - So, you can join two or more subscales together, and produce unified statistics for them 
