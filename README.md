@@ -10,7 +10,7 @@ c) Diagnostic Suite: Batch Multivariate Normality (MVN) testing with intelligent
 d) Auto-Splitting datasets in subscales for finer results. 
 e) Excluding criteria eg. "ID"s, defining time series patterns eg. T1 t2, grepping specific vars for each case.
 
-# CAUTION: Most of these functions WORK with:
+# CAUTION No1: Most of these functions WORK with:
 - A list of datasets
 - A list of lavaan models
 - Both lists must be named
@@ -31,6 +31,44 @@ data_dfs_lst   = all_datasets
 models_dfs_lst = all_models
 cfa_multi(data_dfs_lst, models_dfs_lst)
 
+```
+
+# CAUTION No2: It utilizes r-heavy libraries
+- Best practice install them from terminal than rstudio interface.
+- Crashes or hangups are usual in Rstudio whn installing r-heavy libraries
+- In low end machines, it may take hours of installing, if not previously were pre-installed
+- If you use linux systems, and you have the CPU power, define "make" to work with multithreads by default.
+
+This toolkit leverages the power of the following R ecosystem:
+- Core SEM: lavaan, semTools, semPlot, tidySEM, lavaanPlot
+- Stats & Normality: psych, MVN, interactions
+- Data & Viz: tidyverse (dplyr, purrr, ggplot2, etc.), cowplot, patchwork, gridExtra
+- Export: DiagrammeRsvg, rsvg, png, ggplotify
+
+### Installing the libraries 
+- Two options: using init.R or manually
+- 1st option: Automatically, using init.R: 
+
+``` 
+source("init.R")
+```
+
+- 2nd option: manually: 
+
+```
+pkgs <- c(
+  "psych", "lavaan", "semPlot", "semTools", "MVN", 
+  "dplyr", "tibble", "interactions", "ggplot2", "patchwork", 
+  "gridExtra", "igraph", "purrr", "stringr", "tidySEM", 
+  "DiagrammeRsvg", "rsvg", "lavaanPlot", "ggplotify", "png", 
+  "grid", "cowplot"
+)
+
+# 2. Function to check and install missing packages
+install_if_missing <- function(p) {
+  if (!requireNamespace(p, quietly = TRUE)) {
+    install.packages(p, dependencies = TRUE)
+  }
 ```
 
 
@@ -194,4 +232,11 @@ By Providing a list of lavaan CFA/SEM results:
 - Quick comparison & easy to assess fit indices across multiple lavaan CFA/SEM results.
 - eg. ` fit_indx_bind(list_of_lavaan_fits$fit_indices)` 
 
+--------
 
+### generate_citations()
+- This is the final function 
+- It helps to produce all the citations for the libraries used in these functions
+- A clean summary table
+- It generates a formatted text block that can be directly pasted into the Method or Data Analysis section of a manuscript.
+- This ensures that your reporting meets the highest standards of transparency and APA requirements.
