@@ -64,6 +64,16 @@ Providing a list of dataframes, and splitted dataframes, it produce automaticall
 - it bind all explained variances (R2) into a single wide-format, side-by-side comparison table eg. Case A R2, Case B R2, Case C R2 etc.
 - Direct comparison of  explained variances (R2) across many treatments, cases, multiple SEMs, multiple CFAs.
 
+--------
+
+### mvn_all()
+mvn_all() provides a batch-processing solution for testing these assumptions across multiple datasets (eg., across experimental groups or time points). 
+- It performs both Univariate and Multivariate normality tests simultaneously.
+- A smart exclusion filter to ignore ID and metadata columns
+- Helping to decide maybe the SEM estimator (Standard ML vs Robust MLR/WLSMV).
+
+--------
+
 
 
 
