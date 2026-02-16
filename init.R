@@ -38,3 +38,5 @@ if (dir.exists("R")) {
 } else {
   stop("❌ Error: 'R' folder not found. Please check your working directory.")
 }
+
+cat("Run 'generate_citations()' to get version info for your manuscript.\n")
