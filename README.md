@@ -126,7 +126,7 @@ mvn_all() provides a batch-processing solution for testing these assumptions acr
 
 ### mediation_multi_mlr()
 - Automation of the estimation of complex mediation models across multiple datasets (eg., across different experimental conditions or time waves). 
-- By default utilizing the Robust Maximum Likelihood (MLR) estimator\
+- By default utilizing the Robust Maximum Likelihood (MLR) estimator.
 - Therefore, it provides reliable standard errors and fit indices even when multivariate normality assumptions are violated.
 - It produces semPaths plots for every model in a list of datasets in a 2x2 grid
 - It returns Mediation/SEM lavaan fits, lavaan r2_values, lavaan standardized tables, lavaan fit_indices (eg. CFI, TLI etc.), mi_indices (top 5). 
