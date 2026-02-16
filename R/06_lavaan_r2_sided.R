@@ -2,9 +2,9 @@
 #           Lavaan R-Squared Side-by-Side Table           # 
 ############################################################
 
-lavaan_r2_sided <- function(r2_list, round_djigits = 3) {
+lavaan_r2_sided <- function(r2_list, round_digits = 3) {
   # r2_list: A named list of data frames (extracted from lavaan)
-  # round_djigits: Precision for the R² values
+  # round_digits: Precision for the R² values
   
   datasets <- names(r2_list)
   
@@ -17,7 +17,7 @@ lavaan_r2_sided <- function(r2_list, round_djigits = 3) {
   cols_list <- lapply(datasets, function(nm) {
     df <- r2_list[[nm]]
     # Extract first column (R2) and round it
-    r2 <- round(df[, 1], round_djigits)
+    r2 <- round(df[, 1], round_digits)
     # Extract rownames (Variable names)
     vars <- rownames(df)
     cbind(vars, r2)
