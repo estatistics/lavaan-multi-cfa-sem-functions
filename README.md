@@ -59,6 +59,11 @@ Providing a list of dataframes, and splitted dataframes, it produce automaticall
 
 --------
 
+### lavaan_r2_sided()
+- By providing a list of lavaan results (Multi CFA / Multi SEM)
+- it bind all explained variances (R2) into a single wide-format, side-by-side comparison table eg. Case A R2, Case B R2, Case C R2 etc.
+- Direct comparison of  explained variances (R2) across many treatments, cases, multiple SEMs, multiple CFAs.
+
 
 
 
