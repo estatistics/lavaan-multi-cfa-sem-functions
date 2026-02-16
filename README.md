@@ -39,13 +39,15 @@ cfa_multi(data_dfs_lst, models_dfs_lst)
 # TOOLS Explanation
 
 ### check_df_list()
-This diagnostic utility performs a comprehensive "Sanity Check" across a list of multiple dataframes. Before running complex CFA or SEM models.This function scans every column in every dataset to identify potential mathematical "show-stoppers"—such as non-numeric data, missing values (NA/NaN), infinite values, or unexpected negative numbers. It returns a single, organized summary table, allowing researchers to quickly verify data integrity across multiple experimental treatments or longitudinal waves, time series, at a glance.
+This diagnostic utility performs a comprehensive "Sanity Check" across a list of multiple dataframes, before running complex CFA or SEM models. 
 
-Detects in a list of dataframes "show-stoppers":
+It scans every column in every dataset (list of datasets) to identify potential mathematical "show-stoppers"
 - non-numeric data
 - missing values (NA/NaN),
 - infinite values
 - unexpected negative numbers
+- It returns a single, organized summary table
+- Allowing researchers to quickly verify data integrity across multiple experimental treatments or longitudinal waves, time series, at a glance.
 - eg. `check_df_list(df_list_of_dt)`
 
 --------
