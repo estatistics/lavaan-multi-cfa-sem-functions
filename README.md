@@ -9,3 +9,9 @@ b) Test-Retest Reliability: Automated ICC calculation (1k, 2k) for scale stabili
 c) Diagnostic Suite: Batch Multivariate Normality (MVN) testing with intelligent variable filtering."
 d) Auto-Splitting datasets in subscales for finer results. 
 e) Excluding criteria eg. "ID"s, defining time series patterns eg. T1 t2, grepping specific vars for each case.
+
+# TOOLS Explanation
+
+### check_df_list()
+This diagnostic utility performs a comprehensive "Sanity Check" across a list of multiple dataframes. Before running complex CFA or SEM models.This function scans every column in every dataset to identify potential mathematical "show-stoppers"—such as non-numeric data, missing values (NA/NaN), infinite values, or unexpected negative numbers. It returns a single, organized summary table, allowing researchers to quickly verify data integrity across multiple experimental treatments or longitudinal waves, time series, at a glance.
+
