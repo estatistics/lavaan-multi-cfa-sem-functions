@@ -126,8 +126,10 @@ By Providing a list of lavaan std tables:
 
 --------
 
-
-
-
+### fit_indx_bind()
+By Providing a list of lavaan CFA/SEM results:
+- Aggregate the results of multi-model analyses (fit indices) into a single comparison matrix. 
+- Make a ncie table of Fit measures across many lavaan analyses eg. Time 1, Time 2, Time 3, all binded in a sngle table.
+- Quick comparison & easy to assess fit indices across multiple lavaan CFA/SEM results.
 
 
