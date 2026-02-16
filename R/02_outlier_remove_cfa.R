@@ -56,13 +56,13 @@ outlier_remove_cfa <- function(df_data_wt_id, id_name_var,
   # Calculates the percentage of the distance relative to the maximum
   # and identifies "jumps" in distance between ranked cases
   mh_perc <- round((ord_mahal / max(ord_mahal, na.rm = TRUE)) * 100, 2)
-  mh_djiff <- mh_perc - c(mh_perc[-1], 0)
-  mahal_out_vals <- mh_djiff[mh_djiff > cut_off]
-  list_djata_out <- names(mahal_out_vals)
+  mh_diff <- mh_perc - c(mh_perc[-1], 0)
+  mahal_out_vals <- mh_diff[mh_diff > cut_off]
+  list_data_out <- names(mahal_out_vals)
   
   # ---- Create Clean Dataset ----
   # Filters out the identified outliers from the original dataframe (with IDs intact)
-  mhdata_out_id <- df_data_wt_id[!(rownames(df_data_wt_id) %in% list_djata_out), ]
+  mhdata_out_id <- df_data_wt_id[!(rownames(df_data_wt_id) %in% list_data_out), ]
   
   # ---- Visual Diagnostics ----
   # Plots the distances against a Chi-square distribution. 
@@ -83,6 +83,6 @@ outlier_remove_cfa <- function(df_data_wt_id, id_name_var,
   list(
     data_out_id = mhdata_out_id, # The "cleaned" data
     mahal_distances = mahal_data, # Raw distance scores
-    outliers = list_djata_out     # List of removed IDs
+    outliers = list_data_out     # List of removed IDs
   )
 }
