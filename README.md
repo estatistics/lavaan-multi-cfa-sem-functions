@@ -29,4 +29,12 @@ Detects in a list of dataframes "show-stoppers":
 - It is extracting fit indices (χ2/df ratio, CFI, TLI, RMSEA, SRMR, etc.) from lavaan CFAs/SEMs and presenting them in a clean, vertical dataframe format, rounded in 3 decimals.
 - Crucially, the function includes a use_scaled toggle to automatically switch between standard Maximum Likelihood (ML) indices and Robust (Scaled) indices, which are required when data is non-normal.
 
+--------
+
+### outlier_remove_cfa()
+This function automates multivariate outliers detection using Mahalanobis Distance, identifying cases that exhibit unusual patterns across multiple variables simultaneously. It features a flexible "sensitivity" and "cut-off" system to pinpoint extreme cases and provides a Chi-square Q-Q plot to visualize data normality.
+- It handles missing values
+- ID exclusion
+- Returning a cleaned dataset ready for robust structural equation modeling
+
 
