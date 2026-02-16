@@ -115,6 +115,18 @@ lapply(cfa_res$plots, function(p_func) p_func())
 
 --------
 
+### cfa_range_table()
+By Providing a list of lavaan std tables:
+- It consolidates multiple std solution tables into a single, high-density ranged summary table.
+  - eg. Time 1, Time 2, Time 3. It may produces 3 large std tables.  
+- It identifies the minimum and maximum values for factor loadings, standard errors, and p-values across all models.
+- Unique labeling each min and max value with a reference letter eg. 0.750a - 0.820c eg. T1=a, T2=b, T3=c
+- With a single look, you know which dataframe produced which min / max values in std table
+- It saves space & time, by producing easy & quick looking results for further assessment
+
+--------
+
+
 
 
 
