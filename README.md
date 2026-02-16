@@ -39,7 +39,7 @@ This function automates multivariate outliers detection using Mahalanobis Distan
 - Reports exactly the rows that outliers exists
   
 --------
-
+ 
 ### run_qqplots_cfa()
 It generates ggplot2 Chi-square Q-Q plots for a list of dataframes. By using the previous function outlier_remove_cfa(). It can help identifies extreme cases across all datasets simultaneously. The function automatically arranges these plots into an organized grid. Ideal for initial data screening.
 
