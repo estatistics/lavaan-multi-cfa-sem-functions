@@ -51,6 +51,13 @@ Yo ucan provide prefixes, and it splits your dataset (main scale) into subscales
 - It supports complex grouping logic, allowing you to combine multiple prefixes into a single sub-dataset using the + operator (e.g., "DEPR + ANX").
 - So, you can join two or more subscales together, and produce unified statistics for them 
 
+--------
+
+reliability_table()
+Providing a list of dataframes, and splitted dataframes, it produce automatically all reliabilities per scale, per subscale in a neat table.Based on the psych::alpha function, it produces a summary table containing Cronbach's Alpha, Guttman's Lambda 6, and average inter-item correlations.
+- A unique feature. It flags "negative items"—variables that correlate negatively with the scale total. This allows researchers to quickly identify items that require reverse-coding or exclusion before proceeding to CFA/SEM.
+
+--------
 
 
 
