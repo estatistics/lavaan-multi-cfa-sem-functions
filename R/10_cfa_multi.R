@@ -88,3 +88,9 @@ cfa_multi <- function(data_list, model_list) {
     plots        = plots_cfa
   ))
 }
+
+# in order to produce in a grid plots
+# par(mfrow = c(1, 2))
+# lapply(cfa_res$plots, function(p_func) p_func())
+
+                          
