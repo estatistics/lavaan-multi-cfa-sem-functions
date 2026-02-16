@@ -26,7 +26,7 @@ names_for_list_of_dfs <- c( "df_time1","df_time2","df_time3" )
 # Naming the models
 all_models  <- list( name_time1  = model_time1,  name_time2 = model_time2,  name_time3  = model_time3 )
 
-# Assign them to new vars for clarity, security of against data change
+# Assign them to new vars for clarity, security against data change
 data_dfs_lst   = all_datasets
 models_dfs_lst = all_models
 cfa_multi(data_dfs_lst, models_dfs_lst)
