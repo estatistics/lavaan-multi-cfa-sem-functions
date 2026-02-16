@@ -82,6 +82,7 @@ mvn_all() provides a batch-processing solution for testing these assumptions acr
 - It returns Mediation/SEM lavaan fits, lavaan r2_values, lavaan standardized tables, lavaan fit_indices (eg. CFI, TLI etc.), mi_indices (top 5). 
 
 --------
+
 ### mediation_multi_WLSMV()
 This function can produce lavaan WLSMV stats from multiple datasets and tidy them in summary tables. 
 - It is specifically engineered when you like to use WLSMV estimator
@@ -92,10 +93,27 @@ This function can produce lavaan WLSMV stats from multiple datasets and tidy the
 - Saves these high-resolution diagrams from both tidySEM and lavaanPlot into a dedicated directory (cause tidySEM utilizes View tab in Rstudio, and not Display tab).
 - Specifically, it returns from a list of dataframes: med_fits (mediation/SEM fits), r2_values, lavaan std tables, WLSMV thresholds, reliabilities (Omega, AVE), and a plot list.
 
+--------
 
+### cfa_multi()
+- Producing a list of CFAs from a list of dataframes eg. time series CFAs, Case A, Case B etc.
+- it returns from a list of dataframes:
+  - med_fits (mediation/SEM fits)
+  - r2_values
+  - lavaan std table
+  - fit_indices
+  - mi_indices
+  - semPlots
+  
+```
+# Use together with this function
+# to produce multi plots nicely in a grid all together 
+par(mfrow = c(1, 2))
+cfa_res<-cfa_multi(.....)
+lapply(cfa_res$plots, function(p_func) p_func())
+```
 
-
-
+--------
 
 
 
