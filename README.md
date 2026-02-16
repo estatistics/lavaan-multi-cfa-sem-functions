@@ -9,7 +9,8 @@ b) Test-Retest Reliability: Automated ICC calculation (1k, 2k) for scale stabili
 c) Diagnostic Suite: Batch Multivariate Normality (MVN) testing with intelligent variable filtering."
 d) Auto-Splitting datasets in subscales for finer results. 
 e) Excluding criteria eg. "ID"s, defining time series patterns eg. T1 t2, grepping specific vars for each case.
-
+--------------------------------------------------
+--------------------------------------------------
 # TOOLS Explanation
 
 ### check_df_list()
