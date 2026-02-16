@@ -10,6 +10,30 @@ c) Diagnostic Suite: Batch Multivariate Normality (MVN) testing with intelligent
 d) Auto-Splitting datasets in subscales for finer results. 
 e) Excluding criteria eg. "ID"s, defining time series patterns eg. T1 t2, grepping specific vars for each case.
 
+# CAUTION: Most of these functions WORK with:
+- A list of datasets
+- A list of lavaan models
+- Both lists must be named
+- list of datasets & list of lavaan models must have identical names
+- eg.
+
+```
+# Common names for BOTH Datasets and Models
+# Naming the datasets
+all_datasets <- list(  name_time1 = df_time1, name_time2 = df_time2, name_time3 = df_time3 )
+names_for_list_of_dfs <- c( "df_time1","df_time2","df_time3" )
+
+# Naming the models
+all_models  <- list( name_time1  = model_time1,  name_time2 = model_time2,  name_time3  = model_time3 )
+
+# Assign them to new vars for clarity, security of against data change
+data_dfs_lst   = all_datasets
+models_dfs_lst = all_models
+cfa_multi(data_dfs_lst, models_dfs_lst)
+
+```
+
+
 --------
 --------
 # TOOLS Explanation
@@ -41,6 +65,7 @@ This function automates multivariate outliers detection using Mahalanobis Distan
 - Returning a cleaned dataset ready for robust structural equation modeling
 - Reports exactly the rows that outliers exists
 - It is mostly a helper function for run_qqplots_cfa() but it can used independently too for single datasets
+- Sensitivity and cut_off options can be used to exclude outliers
 - Simple use eg.
  ```
   outliers_res <- outlier_remove_cfa(data_dt$Time1, sensitivity = 1, 
@@ -58,7 +83,7 @@ This function automates multivariate outliers detection using Mahalanobis Distan
 - IDs exclusion provided
 - Sensitivity and cut_off options can be used to exclude outliers
 ```
-run_qqplots_cfa(mutlidataframes, sensitivity = 1, 
+run_qqplots_cfa(list_of_dataframes, sensitivity = 1, 
                 cut_off = 1, plotit = FALSE, ncol_grid = 2, 
                 exld  = c("idt1", "idt2"))
 ```
@@ -69,12 +94,14 @@ You can provide prefixes, and it splits your dataset (main scale) into subscales
 - It automates the creation of scale-specific datasets by identifying column name prefixes (e.g., "DEPR", "ANX"). 
 - It supports complex grouping logic, allowing you to combine multiple prefixes into a single sub-dataset using the + operator (e.g., "DEPR + ANX").
 - So, you can join two or more subscales together, and produce unified statistics for them 
+- eg. `split_dt_subscales(list_of_dfs, prefix_patterns = c("SUB1", "SUB2", "SUB3"))`. eg. SUB1 = subscale 1 prefix eg. "CDS".
 
 --------
 
 ### reliability_table()
 Providing a list of dataframes, and splitted dataframes, it produce automatically all reliabilities per scale, per subscale in a neat table.Based on the psych::alpha function, it produces a summary table containing Cronbach's Alpha, Guttman's Lambda 6, and average inter-item correlations.
 - A unique feature. It flags "negative items"—variables that correlate negatively with the scale total. This allows researchers to quickly identify items that require reverse-coding or exclusion before proceeding to CFA/SEM.
+- eg. `reliability_table(splitted_list_of_dfs)` using the results of the split_dt_subscales().
 
 --------
 
@@ -82,7 +109,7 @@ Providing a list of dataframes, and splitted dataframes, it produce automaticall
 - By providing a list of lavaan results (Multi CFA / Multi SEM)
 - it bind all explained variances (R2) into a single wide-format, side-by-side comparison table eg. Case A R2, Case B R2, Case C R2 etc.
 - Direct comparison of  explained variances (R2) across many treatments, cases, multiple SEMs, multiple CFAs.
-
+- eg. `lavaan_r2_sided(list_of_lavaan_results_fits_from_a_list_of_dfs$r2)` 
 --------
 
 ### mvn_all()
@@ -90,7 +117,7 @@ mvn_all() provides a batch-processing solution for testing these assumptions acr
 - It performs both Univariate and Multivariate normality tests simultaneously.
 - A smart exclusion filter to ignore ID and metadata columns
 - Helping to decide maybe the SEM estimator (Standard ML vs Robust MLR/WLSMV).
-
+- eg. `mvn_all(list_of_dfs, exld  = c("SUB_A", "SUB_B"))$univariate`. eg. SUB1 = subscale 1 prefix eg. excluding items/vars that dont work eg. "CDS".
 --------
 
 ### mediation_multi_mlr()
@@ -99,7 +126,11 @@ mvn_all() provides a batch-processing solution for testing these assumptions acr
 - Therefore, it provides reliable standard errors and fit indices even when multivariate normality assumptions are violated.
 - It produces semPaths plots for every model in a list of datasets in a 2x2 grid
 - It returns Mediation/SEM lavaan fits, lavaan r2_values, lavaan standardized tables, lavaan fit_indices (eg. CFI, TLI etc.), mi_indices (top 5). 
-
+- eg. mediation or SEM:
+ ```
+mediation_multi_mlr(data_list = list_of_dfs, model_list = list_of_lavaan_models, estimator="MLR",  
+                                      check.gradient = FALSE,  std.lv = TRUE)
+```
 --------
 
 ### mediation_multi_WLSMV()
@@ -111,6 +142,11 @@ This function can produce lavaan WLSMV stats from multiple datasets and tidy the
 - Dual-plotting engine (cause WLSMV created problems with semPATHS)
 - Saves these high-resolution diagrams from both tidySEM and lavaanPlot into a dedicated directory (cause tidySEM utilizes View tab in Rstudio, and not Display tab).
 - Specifically, it returns from a list of dataframes: med_fits (mediation/SEM fits), r2_values, lavaan std tables, WLSMV thresholds, reliabilities (Omega, AVE), and a plot list.
+- eg. using WLSMV estimator: 
+```
+mediation_multi_WLSMV(data_list = list_of_dfs, model_list = list_of_lavaan_models,
+                                    ordered = NULL,  estimator = "WLSMV" )
+```
 
 --------
 
@@ -123,6 +159,7 @@ This function can produce lavaan WLSMV stats from multiple datasets and tidy the
   - fit_indices
   - mi_indices
   - semPlots
+  - eg. `cfa_multi(list_of_dfs, list_of_lavaan_models)`
   
 ```
 # Use together with this function
@@ -142,6 +179,7 @@ By Providing a list of lavaan std tables:
 - Unique labeling each min and max value with a reference letter eg. 0.750a - 0.820c eg. T1=a, T2=b, T3=c
 - With a single look, you know which dataframe produced which min / max values in std table
 - It saves space & time, by producing easy & quick looking results for further assessment
+- eg. `cfa_range_table(list_of_lavaan_fits$standardized)` 
 
 --------
 
@@ -150,6 +188,6 @@ By Providing a list of lavaan CFA/SEM results:
 - Aggregate the results of multi-model analyses (fit indices) into a single comparison matrix. 
 - Make a ncie table of Fit measures across many lavaan analyses eg. Time 1, Time 2, Time 3, all binded in a sngle table.
 - Quick comparison & easy to assess fit indices across multiple lavaan CFA/SEM results.
-- eg. ` fit_indx_bind(cfa_t1$fit_indices)` 
+- eg. ` fit_indx_bind(list_of_lavaan_fits$fit_indices)` 
 
 
