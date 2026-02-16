@@ -54,7 +54,7 @@ This diagnostic utility performs a comprehensive "Sanity Check" across a list of
 - It is extracting fit indices (χ2/df ratio, CFI, TLI, RMSEA, SRMR, etc.) from lavaan CFAs/SEMs and presenting them in a clean, vertical dataframe format, rounded in 3 decimals.
 - Crucially, the function includes a use_scaled toggle to automatically switch between standard Maximum Likelihood (ML) indices and Robust (Scaled) indices, which are required when data is non-normal.
 - It is mostly a helper function for other multi CFA/SEM data functions but it can be used independently too for single datasets 
-- Simple use eg. `fit_measures(cfa_fit)`
+- Simple use eg. `fit_measures(cfa_fit, , use_scaled = TRUE)`
 
 --------
 
