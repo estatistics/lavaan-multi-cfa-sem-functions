@@ -110,9 +110,9 @@ Providing a list of dataframes, and splitted dataframes:
 --------
 
 ### lavaan_r2_sided()
-- By providing a list of lavaan results (Multi CFA / Multi SEM)
-- it bind all explained variances (R2) into a single wide-format, side-by-side comparison table eg. Case A R2, Case B R2, Case C R2 etc.
-- Direct comparison of  explained variances (R2) across many treatments, cases, multiple SEMs, multiple CFAs.
+- By providing a list of lavaan results (Multi CFA / Multi SEM) from multiple datasets
+- it binds all explained variances (R2) into a single wide-format, side-by-side comparison table eg. Case A R2, Case B R2, Case C R2 etc.
+- Direct comparison of explained variances (R2) across many treatments, cases, multiple SEMs, multiple CFAs.
 - eg. `lavaan_r2_sided(list_of_lavaan_results_fits_from_a_list_of_dfs$r2)` 
 --------
 
