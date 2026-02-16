@@ -90,6 +90,11 @@ This function can produce lavaan WLSMV stats from multiple datasets and tidy the
 - Automates the calculation of Average Variance Extracted (AVE) for latent constructs.
 - Dual-plotting engine (cause WLSMV created problems with semPATHS)
 - Saves these high-resolution diagrams from both tidySEM and lavaanPlot into a dedicated directory (cause tidySEM utilizes View tab in Rstudio, and not Display tab).
+- Specifically, it returns from a list of dataframes: med_fits (mediation/SEM fits), r2_values, lavaan std tables, WLSMV thresholds, reliabilities (Omega, AVE), and a plot list.
+
+
+
+
 
 
 
