@@ -2,8 +2,6 @@
 #          Automated Software Citation Generator           # 
 ############################################################
 
-
-
 generate_citations <- function(pkgs, include_r = TRUE, include_rstudio = TRUE) {
   
   format_authors_apa <- function(cit) {
