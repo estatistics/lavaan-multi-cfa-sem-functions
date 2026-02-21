@@ -234,6 +234,26 @@ By Providing a list of lavaan CFA/SEM results:
 
 --------
 
+### scale_descriptives()
+By Providing a df of a main scale:
+- It can compute subscale and total scale descriptive statistics
+- eg. mean, SD, min, max, N
+- A smart exclusion filter to ignore ID or specific Vars/Items that dont work well 
+- To combine multiple subscales into a single joined scale eg. `incl = c("A", "B", "C")` = "A_B_C" scale.
+- To compute the total eg. `add_total = TRUE`
+- eg. use:
+- 
+```
+scale_descriptives(
+  dt_of_scale_items,
+  prefix_patterns = c("A_scale","B_scale","C_scale"),
+  exld = c("id1","id2"),
+  incl = c("A_scale", "B_scale"),
+  add_total = TRUE
+)
+```
+
+--------
 ### generate_citations()
 - This is the final function 
 - It helps to produce all the citations for the libraries used in these functions
